@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Models\Admin\Project;
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Category;
 
 class ProjectController extends Controller
 {
@@ -27,7 +28,9 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return response()->view('admin.projects.create', []);
+        $categories = Category::all();
+
+        return response()->view('admin.projects.create', compact('categories'));
         
     }
 

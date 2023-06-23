@@ -46,6 +46,21 @@
           <div id="fileHelpId" class="form-text">Help text</div>
         </div>
 
+        {{-- ciclo delle categories --}}
+
+        <div class="mb-3">
+            <label for="project-categories" class="form-label">Categories</label>
+            <select class="form-select form-select-lg" name="category_id" id="project-categories">
+                <option value="">Scegli una categoria di progetti</option>
+                @foreach ($categories as $elem)
+
+                    <option value="{{$elem->id}}">{{ $elem.name }}</option>
+
+                @endforeach
+               
+            </select>
+        </div>
+
         <button type="submit" class="btn btn-primary">CREATE</button>
     
       </form>
