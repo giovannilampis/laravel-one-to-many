@@ -54,7 +54,7 @@
                 <option value="">Scegli una categoria di progetti</option>
                 @foreach ($categories as $elem)
 
-                    <option value="{{$elem->id}}">{{ $elem.name }}</option>
+                    <option value="{{$elem->id}}">{{ $elem->name }}</option>
 
                 @endforeach
                

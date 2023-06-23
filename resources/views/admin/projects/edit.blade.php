@@ -39,6 +39,21 @@
             <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
+
+             {{-- ciclo delle categories --}}
+
+        <div class="mb-3">
+            <label for="project-categories" class="form-label">Categories</label>
+            <select class="form-select form-select-lg" name="category_id" id="project-categories">
+                <option value="">Scegli una categoria di progetti</option>
+                @foreach ($categories as $elem)
+
+                    <option @if($elem->id == $project->category_id) selected @endif value="{{$elem->id}}">{{ $elem->name }}</option>
+
+                @endforeach
+                
+            </select>
+        </div>
     
         <button type="submit" class="btn btn-primary">EDIT</button>
     

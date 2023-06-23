@@ -77,7 +77,9 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return response()->view('admin.projects.edit', compact('project'));
+        $categories = Category::all();
+
+        return response()->view('admin.projects.edit', compact('project', 'categories'));
         
     }
 

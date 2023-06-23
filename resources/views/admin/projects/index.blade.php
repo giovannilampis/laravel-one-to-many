@@ -11,6 +11,7 @@
                 <div class="card" style=>
                     <img src="{{ $project->img_url }}" class="card-img-top" alt=""{{ $project->title }}"">
                     <div class="card-body">
+                      <h4 class="card-title">"{{ $project->category->name ?? 'no category' }}"</h4>
                       <h5 class="card-title">"{{ $project->title }}"</h5>
                       <h5 class="card-title">"{{ $project->subtitle }}"</h5>
                       <p class="card-text">"{{ $project->description }}"</p>
