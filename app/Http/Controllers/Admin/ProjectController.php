@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Models\Admin\Project;
-use App\Http\Controllers\Controller;
 use App\Models\Admin\Category;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -44,7 +46,8 @@ class ProjectController extends Controller
     {
         $request->validate(
             [
-            'title' => 'required|max:20'
+            'title' => 'required|max:20',
+            'category_id' => 'integer|exists:categories,id'
             ],
             [
             'title.required' => 'Il campo "Title" deve essere necessariamente riempito',
@@ -53,7 +56,13 @@ class ProjectController extends Controller
             ]
         );
 
-        Project::create($request->all());
+        $file = $request->file('cover_image');
+        
+        $fileName = $file->getClientOriginalName();
+
+        Storage::disk('public')->put($fileName, File::get($file));
+
+        Project::create(array_merge($request->all(),['img_url'=>$fileName]));
 
         return redirect()->route('admin.projects.index');
     }
@@ -94,7 +103,8 @@ class ProjectController extends Controller
     {   
         $request->validate(
             [
-            'title' => 'required|max:20'
+            'title' => 'required|max:20',
+            'category_id' => 'integer|exists:categories,id'
             ],
             [
             'title.required' => 'Il campo "Title" deve essere necessariamente riempito',
